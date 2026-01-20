@@ -4,6 +4,7 @@ Welcome! While I'm working on projects, my boat is traveling through this sea of
 <div align="center">
 
 ![Pixel Boat](sea-boat.svg)
+
 *The boat sails through the repositories...*
 
 </div>
