@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100" width="500" height="100">
+
+  <style>
+    svg {
+      shape-rendering: crispEdges;
+      image-rendering: pixelated;
+    }
+
+    @keyframes boatMove {
+      from { transform: translateX(-120px); }
+      to   { transform: translateX(420px); }
+    }
+
+    @keyframes boatRock {
+      0%,100% { transform: rotate(0deg) translateY(0); }
+      25% { transform: rotate(-2deg) translateY(1px); }
+      50% { transform: rotate(0deg) translateY(2px); }
+      75% { transform: rotate(2deg) translateY(1px); }
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(120px); }
+      100% { transform: translateX(-120px); }
+    }
+
+    @keyframes sunBlink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+
+    @keyframes cloudMove {
+      from { transform: translateX(-10px); }
+      to   { transform: translateX(260px); }
+    }
+
+    .boat-move { animation: boatMove 25s linear infinite; }
+    .boat-rock {
+      animation: boatRock 4s steps(4) infinite;
+      transform-origin: 50% 75%;
+      transform-box: fill-box;
+    }
+
+    .wave-front { animation: waveMove 2s linear infinite; }
+    .wave-back  { animation: waveMove 3.5s linear infinite; }
+
+    .sun { animation: sunBlink 3s steps(2) infinite; }
+    .cloud { animation: cloudMove 40s linear infinite alternate; }
+  </style>
+
+  <defs>
+    <!-- Светлая голубая палитра -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e6f7ff"/>
+      <stop offset="100%" stop-color="#b3e0ff"/>
+    </linearGradient>
+
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#99d6ff"/>
+      <stop offset="100%" stop-color="#66c2ff"/>
+    </linearGradient>
+
+    <!-- Маска плавного появления -->
+    <linearGradient id="fadeLR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="black"/>
+      <stop offset="10%" stop-color="white"/>
+      <stop offset="90%" stop-color="white"/>
+      <stop offset="100%" stop-color="black"/>
+    </linearGradient>
+
+    <mask id="boatMask">
+      <rect width="500" height="100" fill="url(#fadeLR)"/>
+    </mask>
+
+    <!-- Паттерн для непрерывных волн -->
+    <!-- ПИКСЕЛЬНЫЕ ВОЛНЫ -->
+    <pattern id="wavePatternBack" x="0" y="0" width="60" height="8" patternUnits="userSpaceOnUse">
+      <rect x="0"  y="4" width="4" height="2" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="4"  y="3" width="4" height="3" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="8"  y="2" width="4" height="4" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="12" y="3" width="4" height="3" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="16" y="4" width="4" height="2" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="20" y="5" width="4" height="1" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="24" y="4" width="4" height="2" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="28" y="3" width="4" height="3" fill="#7fc8ff" opacity = "0.45"/>
+      <rect x="32"  y="4" width="4" height="2" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="36"  y="3" width="4" height="3" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="40"  y="2" width="4" height="4" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="44" y="3" width="4" height="3" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="48" y="4" width="4" height="2" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="52" y="5" width="4" height="1" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="56" y="4" width="4" height="2" fill="#7fc8ff" opacity = "0.5"/>
+      <rect x="60" y="3" width="4" height="3" fill="#7fc8ff" opacity = "0.5"/>
+    </pattern>
+
+    <pattern id="wavePatternFront" x="0" y="0" width="60" height="10" patternUnits="userSpaceOnUse">
+      <rect x="0"  y="6" width="4" height="2" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="4"  y="5" width="4" height="3" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="8"  y="4" width="4" height="4" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="12" y="3" width="4" height="5" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="16" y="4" width="4" height="4" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="20" y="5" width="4" height="3" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="24" y="6" width="4" height="2" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="28" y="5" width="4" height="3" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="32"  y="6" width="4" height="2" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="36"  y="5" width="4" height="3" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="40"  y="4" width="4" height="4" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="44" y="3" width="4" height="5" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="48" y="4" width="4" height="4" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="52" y="5" width="4" height="3" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="56" y="6" width="4" height="2" fill="#b3e6ff" opacity = "0.5"/>
+      <rect x="60" y="5" width="4" height="3" fill="#b3e6ff" opacity = "0.5"/>
+    </pattern>
+
+  </defs>
+
+  <!-- Небо -->
+  <rect width="500" height="60" fill="url(#sky)"/>
+
+  <!-- Солнце (пиксельное) - чуть больше -->
+  <g class="sun">
+    <rect x="454" y="12" width="16" height="16" fill="#ffcc66"/>
+    <rect x="456" y="14" width="12" height="12" fill="#ffeb99"/>
+  </g>
+
+  <!-- Облака - больше облаков -->
+  <g class="cloud">
+    <rect x="32" y="18" width="24" height="6" fill="#ffffff"/>
+    <rect x="28" y="22" width="32" height="6" fill="#ffffff"/>
+  </g>
+
+  <g class="cloud" opacity="0.8" style="animation-delay:-15s">
+    <rect x="104" y="26" width="20" height="5" fill="#ffffff"/>
+    <rect x="100" y="30" width="28" height="5" fill="#ffffff"/>
+  </g>
+
+  <g class="cloud" opacity="0.7" style="animation-delay:-30s">
+    <rect x="180" y="20" width="22" height="6" fill="#ffffff"/>
+    <rect x="176" y="24" width="30" height="6" fill="#ffffff"/>
+  </g>
+
+  <g class="cloud" opacity="0.85" style="animation-delay:-5s">
+    <rect x="260" y="24" width="18" height="5" fill="#ffffff"/>
+    <rect x="256" y="28" width="26" height="5" fill="#ffffff"/>
+  </g>
+
+  <g class="cloud" opacity="0.75" style="animation-delay:-25s">
+    <rect x="340" y="18" width="26" height="6" fill="#ffffff"/>
+    <rect x="336" y="22" width="34" height="6" fill="#ffffff"/>
+  </g>
+
+  <g class="cloud" opacity="0.9" style="animation-delay:-10s">
+    <rect x="420" y="22" width="20" height="5" fill="#ffffff"/>
+    <rect x="416" y="26" width="28" height="5" fill="#ffffff"/>
+  </g>
+
+  <!-- Море -->
+  <rect y="60" width="500" height="40" fill="url(#sea)"/>
+
+  <!-- Волны дальние (паттерн) с перекрытием -->
+  <rect y="65" width="620" height="10" fill="url(#wavePatternBack)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      from="-120,0"
+      to="0,0"
+      dur="15s"
+      repeatCount="indefinite"
+    />
+  </rect>
+
+  <!-- Волны ближние (паттерн) с перекрытием -->
+  <rect y="70" width="620" height="12" fill="url(#wavePatternFront)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      from="-120,0"
+      to="0,0"
+      dur="25s"
+      repeatCount="indefinite"
+    />
+  </rect>
+
+  <!-- Парусник -->
+  <g class="boat-move" mask="url(#boatMask)">
+    <g class="boat-rock">
+
+      <!-- Корпус -->
+      <rect x="86" y="72" width="28" height="4" fill="#4a7bab"/>
+      <rect x="90" y="76" width="20" height="2" fill="#2d5a8c"/>
+
+      <!-- Мачта -->
+      <rect x="99" y="46" width="2" height="26" fill="#2d5a8c"/>
+
+      <!-- Парус -->
+      <rect x="101" y="48" width="14" height="20" fill="#ffffff"/>
+      <rect x="87" y="52" width="14" height="16" fill="#f0f8ff"/>
+
+      <!-- Флаг -->
+      <rect x="101" y="44" width="6" height="4" fill="#ff6666"/>
+
+    </g>
+  </g>
+
+</svg>
